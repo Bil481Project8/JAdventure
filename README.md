@@ -188,3 +188,4 @@ ____________
 Onur Tetik 131101038
 Toygar Koca 131101045
 Erhan Eker 131101040
+Deniz Güner 131101029
