@@ -181,7 +181,9 @@ standard will be decided based on either majority rule or official documentation
  1. Closing curly braces appear on own line unless followed by an else etc.
     which will be a space after the curly brace.
  1. Comments should have one space after "//"
+
  1. Comments 4 lines or greater in length should be multi-line commented
 
 ____________
 Onur Tetik 131101038
+Toygar Koca 131101045
