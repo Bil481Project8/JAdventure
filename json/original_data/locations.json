@@ -445,7 +445,7 @@
 	"0,0,-1": {
 		"danger": 0, 
 		"npcs": ["guide"],
-		"items": ["wshi1"],
+		"items": ["wshi1","wgun"],
 		"locationType": "CAVE",
 		"title": "First Location Ever",
 		"description": "You are in a massive empty room.",

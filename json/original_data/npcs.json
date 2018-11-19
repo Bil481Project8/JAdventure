@@ -110,7 +110,7 @@
       "enemies": [
       	"Recruit"
       ],
-      "items":["pmil1"]
+      "items":["fkit","fkit"]
     },
     "syndicatemember": {
       "name": "Syndicate Member",
@@ -319,7 +319,7 @@
       "enemies": [
       	"Sewer Rat"
       ],
-      "items":["pmil1"]
+      "items":["fkit","fkit"]
     }
   }
 }
