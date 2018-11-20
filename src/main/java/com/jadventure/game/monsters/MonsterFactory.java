@@ -40,22 +40,24 @@ public class MonsterFactory {
         else if (randomInt == 1)
         	return new Troll(playerLevel);
         else
-        	return new Goblin(playerLevel);
+        	return new Orc(playerLevel);
     }
     
     private Monster getSwampMonster(int playerLevel) {
     	int randomInt = random.nextInt(2);
-        return (randomInt == 1) ? new Goblin(playerLevel) : new Troll(playerLevel);
+        return (randomInt == 1) ? new Goblin(playerLevel) : new Orc(playerLevel);
     }
     
     private Monster getMountainMonster(int playerLevel) {
-    	int randomInt = random.nextInt(4);
+    	int randomInt = random.nextInt(5);
         if (randomInt == 0)
             return new Giant(playerLevel);
         else if (randomInt == 1)
             return new Troll(playerLevel);
         else if (randomInt == 2)
             return new Wolf(playerLevel);
+        else if (randomInt ==3)
+            return new Orc(playerLevel);
         else
             return new Skeleton(playerLevel);
     }
@@ -65,13 +67,13 @@ public class MonsterFactory {
         if (randomInt == 0)
             return new Troll(playerLevel);
         else if (randomInt == 1)
-            return new Skeleton(playerLevel);
-        else
             return new Goblin(playerLevel);
+        else
+            return new Orc(playerLevel);
     }
 
     private Monster getPlainsMonster(int playerLevel) {
     	int randomInt = random.nextInt(2);
-    	return (randomInt == 1) ? new Bugbear(playerLevel) : new Goblin(playerLevel);
+    	return (randomInt == 1) ? new Bugbear(playerLevel) : new Orc(playerLevel);
     }
 }
