@@ -3,6 +3,7 @@ package com.jadventure.game.entities;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import com.jadventure.game.GameBeans;
 import com.jadventure.game.QueueProvider;
@@ -244,14 +245,38 @@ public abstract class Entity {
                 break;
             }
             case 'f': {
+                if(item.getId().equals("fkit")){
+                   Random rd = new Random();
+                   int rnd = rd.nextInt(10);
+                   if(rnd<6){
+                    int healthOld = this.getHealth();
+                    this.health += item.getProperty("health");
+                    this.health = (this.health > this.healthMax) ? this.healthMax
+                            : this.health;
+                            
+                        unequipItem(item); // One use only
+                    removeItemFromStorage(item);
+                    result.put("health", String.valueOf(health - healthOld));
+                    break;       
+                   }else{
+                    unequipItem(item); // One use only
+                    removeItemFromStorage(item);
+                    QueueProvider.offer("Failed equip first aid kit");
+                    result.put("health", String.valueOf(0));
+                   }
+
+
+                }else{
                 int healthOld = this.getHealth();
                 this.health += item.getProperty("health");
                 this.health = (this.health > this.healthMax) ? this.healthMax
                         : this.health;
-                unequipItem(item); // One use only
+                        
+                        unequipItem(item); // One use only
                 removeItemFromStorage(item);
                 result.put("health", String.valueOf(health - healthOld));
                 break;
+                }
             }
         }
         return result;
