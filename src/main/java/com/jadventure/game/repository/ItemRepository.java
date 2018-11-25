@@ -159,9 +159,9 @@ public class ItemRepository {
         Random rand = new Random();
         Item item = null;
         do {
-            int itemIndex = rand.nextInt(itemMap.size() - 2);
+            int itemIndex = rand.nextInt(itemMap.size() - 3);
             List<Item> items = new ArrayList<>(itemMap.values());
-            item = items.get(itemIndex + 2); // avoids empty and hands items
+            item = items.get(itemIndex + 3); // avoids empty and hands items
         } while (!item.getId().startsWith(start));
         return item;
     }

@@ -244,7 +244,8 @@ public abstract class Entity {
                 }
                 break;
             }
-            case 'f': {
+            /* onurTe */
+            case 'f': {  
                 if(item.getId().equals("fkit")){
                    Random rd = new Random();
                    int rnd = rd.nextInt(10);

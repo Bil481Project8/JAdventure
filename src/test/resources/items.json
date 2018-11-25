@@ -11,6 +11,19 @@
         "value": "0"
       }
     },
+    "fkit": {
+      "type": "potion",
+      "name": "first aid kit",
+      "description": "some powerful medicine",
+      "position": "mouth",
+      "level": 0,
+      "properties": {
+        "healthMax": "+0",
+        "health": "+100",
+        "weight": "1",
+        "value": "30"
+      }
+    },
     "hands": {
       "type": "weapon",
       "name": "hands",
@@ -19,6 +32,30 @@
       "level": 1,
       "properties": {
         "damage": "1"
+      }
+    },
+    "wsupergun": {
+      "type": "weapon",
+      "name": "machinegun",
+      "description": "a most powerful weapon in a game",
+      "position": "rightHand",
+      "level": 0,
+      "properties": {
+        "damage": "+30",
+		"weight": "3",
+        "value": "100"
+      }
+    },
+    "wgun": {
+      "type": "weapon",
+      "name": "pistol",
+      "description": "a powerful weapon",
+      "position": "rightHand",
+      "level": 1,
+      "properties": {
+        "damage": "+20",
+		"weight": "3",
+        "value": "80"
       }
     },
     "fbrd1": {

@@ -14,39 +14,39 @@ public class ItemTest {
 
 	@Test
 	public void createTest() {
-		Item milk = createMilk();
+		Item fkit = createFkit();
 		
-		assertEquals("pmil1", milk.getId());
-		assertEquals("milk", milk.getName());
-		assertEquals("Milk in a bottle", milk.getDescription());
-        assertEquals(1, milk.getLevel());
-		assertEquals(Integer.valueOf(1), milk.getWeight());
+		assertEquals("fkit", fkit.getId());
+		assertEquals("first aid kit", fkit.getName());
+		assertEquals("some powerful medicine", fkit.getDescription());
+        assertEquals(0, fkit.getLevel());
+		assertEquals(Integer.valueOf(1), fkit.getWeight());
 	}
 	
 	@Test
 	public void checkEqual() {
-		Item milk = createMilk();
+		Item fkit = createFkit();
 
-		assertEquals(milk, createMilk());
-		assertTrue(milk.equals(createMilk()));
+		assertEquals(fkit, createFkit());
+		assertTrue(fkit.equals(createFkit()));
 	}
 
 	@Test
 	public void checkNotEqual() {
-		Item milk = createMilk();
+		Item fkit = createFkit();
 		Item egg = createEgg();
 		
-		assertNotEquals(milk, egg);
-		assertFalse(milk.equals(egg));
+		assertNotEquals(fkit, egg);
+		assertFalse(fkit.equals(egg));
 	}
 
-    private Item createMilk() {
+    private Item createFkit() {
         Map<String, Integer> properties = new TreeMap<>();
-        properties.put("health", Integer.valueOf(5));
+        properties.put("health", Integer.valueOf(100));
         properties.put("weight", Integer.valueOf(1));
-        properties.put("value", Integer.valueOf(10));
+        properties.put("value", Integer.valueOf(30));
         
-        Item item = new Item("pmil1", "food-liquid", "milk", "Milk in a bottle", 1, properties);
+        Item item = new Item("fkit", "potion", "first aid kit", "some powerful medicine", 0, properties);
         return item;
     }
 

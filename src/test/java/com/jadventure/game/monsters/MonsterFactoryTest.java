@@ -40,7 +40,7 @@ public class MonsterFactoryTest {
         Monster forestMonster = factory.generateMonster(player);
         assertTrue(forestMonster instanceof Troll ||
                 forestMonster instanceof Bugbear ||
-                forestMonster instanceof Goblin);
+                forestMonster instanceof Orc);
     }
 
     @Test
@@ -49,7 +49,7 @@ public class MonsterFactoryTest {
         player.setLocation(location);
         Monster swampMonster = factory.generateMonster(player);
         assertTrue(swampMonster instanceof Goblin ||
-                swampMonster instanceof Troll);
+                swampMonster instanceof Orc);
     }
 
     @Test
@@ -60,6 +60,7 @@ public class MonsterFactoryTest {
         assertTrue(mountainMonster instanceof Giant ||
                 mountainMonster instanceof Wolf ||
                 mountainMonster instanceof Troll ||
+                mountainMonster instanceof Orc ||
                 mountainMonster instanceof Skeleton);
     }
 
@@ -69,7 +70,7 @@ public class MonsterFactoryTest {
         player.setLocation(location);
         Monster caveMonster = factory.generateMonster(player);
         assertTrue(caveMonster instanceof Troll ||
-                caveMonster instanceof Skeleton ||
+                caveMonster instanceof Orc ||
                 caveMonster instanceof Goblin);
     }
 
@@ -79,7 +80,7 @@ public class MonsterFactoryTest {
         player.setLocation(location);
         Monster plansMonster = factory.generateMonster(player);
         assertTrue(plansMonster instanceof Bugbear ||
-                plansMonster instanceof Goblin);
+                plansMonster instanceof Orc);
     }
 
     @Test

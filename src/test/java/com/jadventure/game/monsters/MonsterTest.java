@@ -27,7 +27,9 @@ public class MonsterTest {
         Troll troll = new Troll(playerLevel);
         Troll anotherTroll = new Troll(playerLevel);
         Goblin notTroll = new Goblin(playerLevel);
+        Orc orc = new Orc(playerLevel);
 
+        assertFalse(orc.equals(troll));
         assertTrue(troll.equals(anotherTroll));
         assertFalse(troll.equals(notTroll));
         assertFalse(troll.equals(null));
@@ -66,5 +68,8 @@ public class MonsterTest {
 
         Wolf wolf = new Wolf(playerLevel);
         assertTrue(wolf.monsterType.equals("Wolf"));
+
+        Orc orc = new Orc(playerLevel);
+        assertTrue(orc.monsterType.equals("Orc"));
     }
 }
