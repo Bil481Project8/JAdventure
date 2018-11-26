@@ -79,12 +79,7 @@ int sans2=0;
 int xp=0;
 String milk="milk";
 
-
-
-       try {
-            while (continuePrompt) {
-////////////////////////Kutu sorusu burada
-     QueueProvider.offer("\nYour lucky box is ready!!!!!:)\nDo you want to open it [1] or you want to skip it and continue your journey [2] :");
+ QueueProvider.offer("\nYour lucky box is ready!!!!!:)\nDo you want to open it [1] or you want to skip it and continue your journey [2] :");
 		String opsiyon=QueueProvider.take();
 
 	sans = rand.nextInt(10) + 1;
@@ -184,7 +179,12 @@ else if(sanslipara==9||sanslipara==8||sanslipara==7){
 		else{
 		QueueProvider.offer("\nYour lucky box does not exist anymore\n You ruined your chance without clicking neither 1 nor 2 \nBut do not worry it will not be your only chance \nYour luck is about to change again wait and see...\n");
 
-		}                
+		} 
+
+       try {
+            while (continuePrompt) {
+////////////////////////Kutu sorusu burada
+                   
 		QueueProvider.offer("\nPrompt:");
                 String command = QueueProvider.take().toLowerCase();
                 continuePrompt = parser.parse(player, command);
