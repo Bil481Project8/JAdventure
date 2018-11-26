@@ -65,7 +65,8 @@ public class Trading {
                 QueueProvider.offer("You now have " + player.getGold() + " gold coins remaining.");
             }
             else {
-                QueueProvider.offer("You do not have enough money!");
+                QueueProvider.offer("You do not have enough money!\n \n");
+		QueueProvider.offer("Would you like to get borrow from NPC?\n If yes press [Y], [N] for continue! \n"); //borc ister misiniz?
             }
         } else {
             QueueProvider.offer("Either this item doesn't exist or this character does not own that item");
@@ -88,6 +89,7 @@ public class Trading {
             if (item != itemRepo.getItem("empty")) {
                 QueueProvider.offer("You have sold a " + item.getName() + " for " + (player.getGold() - goldBefore) + " gold coins.");
                 QueueProvider.offer("You now have " + player.getGold() + " gold coins remaining.");
+		
             }
             else {
                 QueueProvider.offer(npc.getName() + " does not have enough money!");
