@@ -53,7 +53,7 @@ public class Trading {
 
         QueueProvider.offer("You have " + player.getGold() + " gold coins.\nWhat do you want to buy?");
         String itemName = QueueProvider.take();
-
+	String borrowSelection;
         if ("exit".equals(itemName) || "back".equals(itemName)) {
             return;
         }
@@ -67,6 +67,15 @@ public class Trading {
             else {
                 QueueProvider.offer("You do not have enough money!\n \n");
 		QueueProvider.offer("Would you like to get borrow from NPC?\n If yes press [Y], [N] for continue! \n"); //borc ister misiniz?
+		borrowSelection=QueueProvider.take();	//secenek al
+		if(borrowSelection.equals("Y")){	//3 adet borç secenegi mevcut olacak kisa orta uzun vadeli olarak miktarları ve 								geri ödeme bedelleri de degisecek
+			System.out.println("I will give you some gold but you have to payback to me again.Otherwise you'll suffer \n");
+			System.out.println("BORROWING OPTİONS :");
+			System.out.println("1) BORROWING OPTİONS");
+			System.out.println("2) BORROWING OPTİONS");// 3 seçenek eklenecek.
+			System.out.println("3) BORROWING OPTİONS");
+		}
+		
             }
         } else {
             QueueProvider.offer("Either this item doesn't exist or this character does not own that item");
