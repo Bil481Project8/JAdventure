@@ -15,7 +15,14 @@ public class ItemTest {
 	@Test
 	public void createTest() {
 		Item fkit = createFkit();
-		
+		//Item wgun = createWgun();  /*Adding new weapon test */
+		//Item wsupergun = createWsupergun();
+
+		//assertEquals("wgun",wgun.getId());
+		//assertEquals("");
+		//assertEquals("");
+		//assertEquals("");
+		//assertEquals("wsupergun",wsupergun.getId());
 		assertEquals("fkit", fkit.getId());
 		assertEquals("first aid kit", fkit.getName());
 		assertEquals("some powerful medicine", fkit.getDescription());
@@ -48,7 +55,27 @@ public class ItemTest {
         
         Item item = new Item("fkit", "potion", "first aid kit", "some powerful medicine", 0, properties);
         return item;
-    }
+	}
+	
+	/*private Item createWgun() {
+        Map<String, Integer> properties = new TreeMap<>();
+        properties.put("health", Integer.valueOf(100));
+        properties.put("weight", Integer.valueOf(1));
+        properties.put("value", Integer.valueOf(30));
+        
+        Item item = new Item("fkit", "potion", "first aid kit", "some powerful medicine", 0, properties);
+        return item;
+	}
+
+	private Item createWsupergun() {
+        Map<String, Integer> properties = new TreeMap<>();
+        properties.put("health", Integer.valueOf(100));
+        properties.put("weight", Integer.valueOf(1));
+        properties.put("value", Integer.valueOf(30));
+        
+        Item item = new Item("fkit", "potion", "first aid kit", "some powerful medicine", 0, properties);
+        return item;
+	}*/
 
     private Item createEgg() {
         Map<String, Integer> properties = new TreeMap<>();
