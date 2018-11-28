@@ -11,6 +11,25 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonArray;
+import com.jadventure.game.GameBeans;
+import com.jadventure.game.entities.Entity;
+
+import com.jadventure.game.menus.BattleMenu;
+import com.jadventure.game.navigation.Coordinate;
+import com.jadventure.game.navigation.ILocation;
+import com.jadventure.game.navigation.LocationType;
+import com.jadventure.game.repository.ItemRepository;
+import com.jadventure.game.items.Item;
+import com.jadventure.game.items.ItemStack;
+import com.jadventure.game.items.Storage;
+import com.google.gson.JsonParser;
+import com.jadventure.game.monsters.*;
+import com.jadventure.game.entities.*;
+import java.util.Map;
+import java.io.Reader;
+import java.io.FileReader;
+import java.util.List;
+
 
 
 import java.util.ArrayList;
@@ -83,23 +102,12 @@ String milk="milk";
          JsonObject json = new JsonObject();
 
 
-
-      if(lcount==0){
+     if(lcount==0){
 	QueueProvider.offer("\nYour lucky box is ready!!!!!:)\nDo you want to open it [1] or you want to skip it and continue your journey [2] :");
 		String opsiyon=QueueProvider.take();
 //player.setDamage(player.getDamage()+150);
 	sans = rand.nextInt(10) + 1;
 		if(opsiyon.equals("1")){
-//yuzde elli iyi yuzde elli kotu 
-//iyi ise yuzden 50 item pickUpItem(String itemName)
-
-
-
-//yuzde 40 para 
-//yuzde 10 xp
-
-//kotu ise
-//canvar kesin yuzde 30 skeleton yuzden 5 troll yuzde 10 wolf vs.  
 	if(sans<6){
 	sans2 = rand.nextInt(10) + 1;
      QueueProvider.offer("\n Something good is about to be happen Lucky You ");
@@ -109,10 +117,6 @@ int sans3= rand.nextInt(10) + 1;
 	if(sans3==10){
      QueueProvider.offer("\nYour lucky box provides you the highest XP you will get from lucky box which is --------------> 1000 XP");
 
-/*public void setXP(int xp) {
-        this.xp = xp;
-    }	
-*/
 player.setXP(player.getXP()+1000);
  int oldLevel = player.getLevel();
             int newLevel = (int) (0.075 * Math.sqrt(player.getXP()) + 1);
@@ -150,33 +154,19 @@ player.setXP(player.getXP()+300);
 
 	}
 
-	/////////XP kazanacak 
 
 	}else if(sans2==2||sans2==3||sans2==4||sans2==5||sans2==6){
 int sanslipara=rand.nextInt(10) + 1;
-	//////////Para kazanacak	
-/*
-public void setGold(int gold) {
-        this.gold = gold;
-    }
-
-*/
 if(sanslipara==10){
 	     QueueProvider.offer("\nYour lucky box provides you more gold than you will ever gonna need which is --------------> 5000 Gold\nSpend it in an useful way :) ");
-//if(entity.getGold()!=0)
-//entity.setGold(entity.getGold()+5000);
 player.setGold(player.getGold()+5000);
 }
 else if(sanslipara==9||sanslipara==8||sanslipara==7){
 	     QueueProvider.offer("\nYour lucky box provides you some gold which is --------------> 2000 Gold");
-//if(entity.getGold()!=0)
-//entity.setGold(entity.getGold()+2000);
 player.setGold(player.getGold()+2000);
 }else{
 
 	     QueueProvider.offer("\nYour lucky box provides you small amount of gold which is --------------> 500 Gold");
-//if(entity.getGold()!=0)
-//entity.setGold(entity.getGold()+500);
 player.setGold(player.getGold()+500);
 }
 	}else{
@@ -193,10 +183,30 @@ player.setGold(player.getGold()+500);
             }
 */
 
-//player.addItemToStorage(milk);
+// 	 player.addItemToStorage(milk);
 //	 Storage st=new Storage(5);
+//	Item it=Item.getRandomItem(milk,player.getLevel());
+//	player.addItemToStorage(it);
+/*
+try{
+	JsonParser parser = new JsonParser();
+        String fileName = "json/original_data/npcs.json";
+            Reader reader = new FileReader(fileName);
+            JsonObject npcs = parser.parse(reader).getAsJsonObject().get("npcs").getAsJsonObject();
+            for (Map.Entry<String, JsonElement> entry : npcs.entrySet()) {
+//                if (entry.getKey().equals(playerClass)) {
+                    json = entry.getValue().getAsJsonObject();
+  //              }
+            } 
+}catch(Exception e){
+System.out.println(e.getMessage());
+}
+JsonArray items = json.get("items").getAsJsonArray();
+            for (JsonElement item : items) {
+                player.addItemToStorage(itemRepo.getItem(item.getAsString()));
+            }
 
-//	player.addItemToStorage(itemRepo.getRandomItem(milk,2));
+*/
 	}
 
 	}else{
@@ -212,10 +222,28 @@ player.setDamage(player.getDamage()-15);
 player.setHealth(player.getHealth()-20);
 }else{
 QueueProvider.offer("\nSssshhh !!!!!!\nWe are not alone "+player.getName()+"\n'' - ''\nPrepare for battle!!!!!\n");
-}
+        List<Monster> monsters = player.getLocation().getMonsters();
+	    Monster monsterOpponent=null;
+
+		monsters.add(new Giant(player.getLevel()));		   
+		//easy/monsters.add(new Goblin(player.getLevel()));		   
+		//easy/monsters.add(new Bugbear(player.getLevel()));		   
+		//easy/monsters.add(new Orc(player.getLevel()));		   
+		//easy/monsters.add(new Skeleton(player.getLevel()));		   
+		monsters.add(new Troll(player.getLevel()));		   
+		//easy/monsters.add(new Wolf(player.getLevel()));		   
+	    int randomMonster=rand.nextInt(monsters.size()-1);
+	 monsterOpponent=monsters.get(randomMonster);
+            monsterOpponent.setName(monsterOpponent.monsterType);
+	
+	      QueueProvider.offer(monsterOpponent.getName()+" is attacking us bro! What are we gonna do "+player.getName());
+            new BattleMenu(monsterOpponent, player);
+
+}//end of monster meeting
 
 
-	}
+
+	}//end of the bad thing
 
 
 		}else if(opsiyon.equals("2")){
@@ -226,6 +254,9 @@ QueueProvider.offer("\nSssshhh !!!!!!\nWe are not alone "+player.getName()+"\n''
 
 		}                
 		}//lcount==0
+		
+
+
        try {
             while (continuePrompt) {
 ////////////////////////Kutu sorusu burada
