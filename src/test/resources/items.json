@@ -39,7 +39,7 @@
       "name": "machinegun",
       "description": "a most powerful weapon in a game",
       "position": "rightHand",
-      "level": 0,
+      "level": 1,
       "properties": {
         "damage": "+30",
 		"weight": "3",

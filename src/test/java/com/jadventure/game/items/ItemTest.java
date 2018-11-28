@@ -15,14 +15,21 @@ public class ItemTest {
 	@Test
 	public void createTest() {
 		Item fkit = createFkit();
-		//Item wgun = createWgun();  /*Adding new weapon test */
-		//Item wsupergun = createWsupergun();
+		Item wgun = createWgun();  /*Adding new weapon test */
+		Item wsupergun = createWsupergun();
 
-		//assertEquals("wgun",wgun.getId());
-		//assertEquals("");
-		//assertEquals("");
-		//assertEquals("");
-		//assertEquals("wsupergun",wsupergun.getId());
+		assertEquals("wgun",wgun.getId());
+		assertEquals("pistol",wgun.getName());
+		assertEquals("a powerful weapon",wgun.getDescription());
+		assertEquals(1,wgun.getLevel());
+		assertEquals(Integer.valueOf(3),wgun.getWeight());
+
+		assertEquals("wsupergun",wsupergun.getId());
+		assertEquals("machinegun",wsupergun.getName());
+		assertEquals("a most powerful weapon in a game",wsupergun.getDescription());
+		assertEquals(1,wsupergun.getLevel());
+		assertEquals(Integer.valueOf(3),wsupergun.getWeight());
+
 		assertEquals("fkit", fkit.getId());
 		assertEquals("first aid kit", fkit.getName());
 		assertEquals("some powerful medicine", fkit.getDescription());
@@ -57,25 +64,23 @@ public class ItemTest {
         return item;
 	}
 	
-	/*private Item createWgun() {
+	private Item createWgun() {
         Map<String, Integer> properties = new TreeMap<>();
-        properties.put("health", Integer.valueOf(100));
-        properties.put("weight", Integer.valueOf(1));
-        properties.put("value", Integer.valueOf(30));
+        properties.put("weight", Integer.valueOf(3));
+        properties.put("value", Integer.valueOf(80));
         
-        Item item = new Item("fkit", "potion", "first aid kit", "some powerful medicine", 0, properties);
+        Item item = new Item("wgun", "weapon", "pistol", "a powerful weapon", 1, properties);
         return item;
 	}
 
 	private Item createWsupergun() {
         Map<String, Integer> properties = new TreeMap<>();
-        properties.put("health", Integer.valueOf(100));
-        properties.put("weight", Integer.valueOf(1));
-        properties.put("value", Integer.valueOf(30));
+        properties.put("weight", Integer.valueOf(3));
+        properties.put("value", Integer.valueOf(80));
         
-        Item item = new Item("fkit", "potion", "first aid kit", "some powerful medicine", 0, properties);
+        Item item = new Item("wsupergun", "weapon", "machinegun", "a most powerful weapon in a game", 1, properties);
         return item;
-	}*/
+	}
 
     private Item createEgg() {
         Map<String, Integer> properties = new TreeMap<>();
