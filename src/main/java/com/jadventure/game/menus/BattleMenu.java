@@ -23,7 +23,8 @@ public class BattleMenu extends Menus {
     private int armour;
     private double damage;
     private int escapeSuccessfulAttempts = 0;
-
+    private int escapeSuccessfulMonsterAttempts=0;
+    
     public BattleMenu(NPC opponent, Player player) throws DeathException {
         this.random = new Random();
         this.opponent = opponent;
@@ -139,6 +140,20 @@ public class BattleMenu extends Menus {
                   break;
             }
         }
+    }
+
+    /* This method calculates the probability of the escape of the monster */
+    
+    private int escapeAtackerAttempt(Player player, NPC attacker) { 
+       
+        Random rnd = new Random();
+        int rand = rnd.nextInt(5);
+        if(rand ==1 ){
+            //player.getLocation().remove(attacker);
+            return 1;
+        }else
+            return 0;
+
     }
 
     private int escapeAttempt(Player player, NPC attacker,
