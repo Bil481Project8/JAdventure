@@ -275,50 +275,70 @@ QueueProvider.offer("\nSssshhh !!!!!!\nWe are not alone "+player.getName()+"\n''
        try {
             while (continuePrompt) {
 ////////////////////////Kutu sorusu burada
-                if(player.borcAldiMi==1){
+                if(player.borcAldiMi==1){			//sadece borc alindiginda devreye girecek.
 			
-			player.promptCheck++;
-			temp=10-player.promptCheck;
+			player.promptCheck++;	//bizim icin zaman dilimi her bir prompt girişidir.
+			temp=10-player.promptCheck;	//10 prompt olarak sectim zamanı,10 prompt sonra tahsil edilecek.
 			if(temp!=0)
 				System.out.println("\n(You should pay your debt after : "+ temp +" steps.)");
 			else if(temp==0){
 				int miktar=0;
 				
-				if((player.borcTipi).equals("1")){
+				if((player.borcTipi).equals("1")){	//1. borc tipi odenmemesi halinde 20 can azaltir.
 					miktar=player.getGold()-50;
 					if(miktar<0){
 						if(!(player.getHealth()-20 <= 0))
 							player.setHealth(player.getHealth()-20);
 						else
-							player.setHealth(1);		
+							player.setHealth(1);
+						System.out.println("\n____You did not pay your debt.Your health decreased to "+ player.getHealth()+"_____");				
 					}
 					else{
-						player.setGold(miktar);		
+						player.setGold(miktar);
+						System.out.println("\n____Thanks for paying back your debt! See you later._____");		
 					}
 					
 				}
-				else if((player.borcTipi).equals("2")){
+				else if((player.borcTipi).equals("2")){	//2. borc tipi odenmemesi halinde 10 hasar azaltir.
 					miktar=player.getGold()-50;
 					if(miktar<0){
 						if(!(player.getDamage()-10 <= 0))
 							player.setDamage(player.getDamage()-10);
 						else
-							player.setDamage(1);		
+							player.setDamage(1);
+						System.out.println("\n____You did not pay your debt.Your damage decreased to "+ player.getDamage()+"____");		
 					}
 					else{
-						player.setGold(miktar);		
+						player.setGold(miktar);
+						System.out.println("\n____Thanks for paying back your debt! See you later._____");				
 					}
+					
 				}
-				else if((player.borcTipi).equals("3")){
+				else if((player.borcTipi).equals("3")){	//3. borc tipi odenmemesi halinde armor,intelligence ve dexterityi 1 azaltir.
 					miktar=player.getGold()-50;
 					if(miktar<0){
 						if(!(player.getArmour()-1 < 0))
 							player.setArmour(player.getArmour()-1);
 						else
-							player.setArmour(0);		
+							player.setArmour(0);
+						if(!(player.getDexterity()-1 < 0))
+							player.setDexterity(player.getDexterity()-1);
+						else
+							player.setDexterity(0);
+						if(!(player.getIntelligence()-1 < 0))
+							player.setIntelligence(player.getIntelligence()-1);
+						else
+							player.setIntelligence(0);
+
+
+						System.out.println("\n____You did not pay your debt.Your armour decreased to "+ player.getArmour()+"____");				
+						System.out.println("\n____You did not pay your debt.Your intelligence decreased to "+ player.getIntelligence()+"____");				
+						System.out.println("\n____You did not pay your debt.Your dexterity decreased to "+ player.getDexterity()+"____");				
 					}
 					else{
-						player.setGold(miktar);		
+						player.setGold(miktar);
+						System.out.println("\n____Thanks for paying back your debt! See you later._____");		
+								
 					}
 				}
 				player.borcAldiMi=0;

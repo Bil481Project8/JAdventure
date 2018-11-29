@@ -70,35 +70,42 @@ public class Trading {
                 QueueProvider.offer("You do not have enough money!\n \n");
 		QueueProvider.offer("Would you like to get borrow from NPC?\n If yes press [Y], [N] for continue! \n"); //borc ister misiniz?
 		borrowSelection=QueueProvider.take();	//secenek al
-		if(borrowSelection.equals("Y")){	//3 adet borç secenegi mevcut olacak kisa orta uzun vadeli olarak miktarları ve 								geri ödeme bedelleri de degisecek
-			System.out.println("I will give you some gold but you have to payback to me again.\n");
-			System.out.println("BORROWING OPTİONS :");// 3 seçenek var.
-			System.out.println("1) When payback time gold is not enough,HEALTH is going to decrease. PRESS 1");
-			System.out.println("2) When payback time gold is not enough,STRENGTH is going to decrease.PRESS 2");
-			System.out.println("3) When payback time gold is not enough,ARMOUR is going to decrease.PRESS 3");
-			borrowTypeSelection=QueueProvider.take();
-			if(borrowTypeSelection.equals("1")){
-				System.out.println("okey, you get 50 gold.AFTER 10 PROMPT YOU SHOULD PAY ME BACK.\n if not,your health is going to decrease.");
-				player.setGold(50);
-				player.borcAldiMi=1;
-				player.borcTipi="1";
-			}
-			else if(borrowTypeSelection.equals("2")){
-				System.out.println("okey, you get 50 gold.AFTER 10 PROMPT YOU SHOULD PAY ME BACK.\n if not,your strength is going to decrease.");
-				player.setGold(50);
-				player.borcAldiMi=1;
-				player.borcTipi="2";
-			}
-			else if(borrowTypeSelection.equals("3")){
-				System.out.println("okey, you get 50 gold.AFTER 10 PROMPT YOU SHOULD PAY ME BACK.\n if not,your armour is going to decrease.");
-				player.setGold(50);
-				player.borcAldiMi=1;
-				player.borcTipi="3";
+			if(borrowSelection.equalsIgnoreCase("Y")){	//3 adet borç secenegi mevcut olacak kisa orta uzun vadeli olarak miktarları ve 								geri ödeme bedelleri de degisecek
+				System.out.println("I will give you some gold but you have to payback to me again.\n");
+				System.out.println("BORROWING OPTİONS :");// 3 seçenek var.
+				System.out.println("1) When payback time gold is not enough,HEALTH is going to decrease.PRESS 1");
+				System.out.println("2) When payback time gold is not enough,DAMAGE is going to decrease.PRESS 2");
+				System.out.println("3) When payback time gold is not enough,ARMOUR,INTELLIGENCE and DEXTERITY are going to decrease.PRESS 3");
+				borrowTypeSelection=QueueProvider.take();
+				if(borrowTypeSelection.equals("1")){	
+					
+					player.setGold(player.getGold()+50);
+					player.borcAldiMi=1;
+					player.borcTipi="1";
+					System.out.println("okey, you get 50 gold.AFTER 10 PROMPT YOU SHOULD PAY ME BACK.\n if not,your armour,intelligence and dexterity are going to decrease.");
+					System.out.println("current gold : "+player.getGold());
+				}
+				else if(borrowTypeSelection.equals("2")){
+					
+					player.setGold(player.getGold()+50);
+					player.borcAldiMi=1;
+					player.borcTipi="2";
+					System.out.println("okey, you get 50 gold.AFTER 10 PROMPT YOU SHOULD PAY ME BACK.\n if not,your armour,intelligence and dexterity are going to decrease.");
+					System.out.println("current gold : "+player.getGold());
+				}
+				else if(borrowTypeSelection.equals("3")){
+					
+					player.setGold(player.getGold()+50);
+					player.borcAldiMi=1;
+					player.borcTipi="3";
+					System.out.println("okey, you get 50 gold.AFTER 10 PROMPT YOU SHOULD PAY ME BACK.\n if not,your armour,intelligence and dexterity are going to decrease.");
+					System.out.println("current gold : "+player.getGold());
+				}
 			}
 			else{
 				System.out.println("You lost your borrow chance for now !");
 			}
-		}
+		
 		
             }
         } else {
