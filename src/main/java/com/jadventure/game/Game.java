@@ -29,7 +29,7 @@ import java.util.Map;
 import java.io.Reader;
 import java.io.FileReader;
 import java.util.List;
-
+import java.util.HashMap;
 
 
 import java.util.ArrayList;
@@ -173,41 +173,55 @@ player.setGold(player.getGold()+500);
 
              QueueProvider.offer("\nYour lucky box provides you an item that will be randomly appointed to you ------------->");
 
-	/////////item cikacak
-///                    addItemToStorage(item);
-//monster.addRandomItems(2, String... children);
-//player.addItemToStorage(itemRepo.getItem(item.getAsString()));
-/*	JsonArray items = json.get("items").getAsJsonArray();
-            for (JsonElement item : items) {
-                player.addItemToStorage(itemRepo.getItem(item.getAsString()));
-            }
-*/
 
-// 	 player.addItemToStorage(milk);
-//	 Storage st=new Storage(5);
-//	Item it=Item.getRandomItem(milk,player.getLevel());
-//	player.addItemToStorage(it);
-/*
-try{
-	JsonParser parser = new JsonParser();
-        String fileName = "json/original_data/npcs.json";
-            Reader reader = new FileReader(fileName);
-            JsonObject npcs = parser.parse(reader).getAsJsonObject().get("npcs").getAsJsonObject();
-            for (Map.Entry<String, JsonElement> entry : npcs.entrySet()) {
-//                if (entry.getKey().equals(playerClass)) {
-                    json = entry.getValue().getAsJsonObject();
-  //              }
-            } 
-}catch(Exception e){
-System.out.println(e.getMessage());
+int lucy=rand.nextInt(10) + 1;
+if(lucy==2||lucy==1){
+Map<String, Integer> properties =new HashMap<String, Integer>();
+properties.put("health", 7);
+properties.put("weight",2);
+properties.put("value", 3);
+	Item luit=new Item("fram1","food","raw meat","some delicious raw meat",1,properties);
+     QueueProvider.offer("raw meat\n"+player.getName()+" ,if you are gonna look at it enter this command [vb] if you are gonna use it then enter [ve]\n");
+	player.addItemToStorage(luit);
+}else if(lucy==3||lucy==4||lucy==5){
+Map<String, Integer> properties2 =new HashMap<String, Integer>();
+properties2.put("healthMax",0);
+properties2.put("health", 25);
+properties2.put("weight",1);
+properties2.put("value",20);
+	Item luit2=new Item("pmil2","potion","super milk","this milk must have come from a super cow because it is extra delicious milk",2,properties2);
+     QueueProvider.offer("super milk\n"+player.getName()+", if you are gonna look at it enter this command [vb] if you are gonna use it then enter [ve]\n");
+	player.addItemToStorage(luit2);
+
+
 }
-JsonArray items = json.get("items").getAsJsonArray();
-            for (JsonElement item : items) {
-                player.addItemToStorage(itemRepo.getItem(item.getAsString()));
-            }
+else if(lucy==6||lucy==7||lucy==8){
+Map<String, Integer> properties3 =new HashMap<String, Integer>();
+properties3.put("damage",50);
+properties3.put("weight",3);
+properties3.put("value",0);
+	Item luit3=new Item("katana","weapon","Katana","A long sword once used by a legendary Japanese samurai",3,properties3);
+     QueueProvider.offer("Katana\n"+player.getName()+", if you are gonna look at it enter this command [vb] if you are gonna use it then enter [ve]\n");
+	player.addItemToStorage(luit3);
 
-*/
-	}
+
+}
+else{
+Map<String, Integer> properties4 =new HashMap<String, Integer>();
+properties4.put("armour", 4);
+properties4.put("weight",3);
+properties4.put("value",40);
+	Item luit4=new Item("arhl1","armour","rusted helmet","a rusted helmet, it will do for now",1,properties4);
+     QueueProvider.offer("rusted helmet\n"+player.getName()+", if you are gonna look at it enter this command [vb] if you are gonna use it then enter [ve]\n");
+	player.addItemToStorage(luit4);
+
+
+
+
+}
+
+
+	}//end of item thing
 
 	}else{
 		//////kotu bir sey 
