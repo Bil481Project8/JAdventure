@@ -44,6 +44,7 @@ public class Game {
     public MonsterFactory monsterFactory = new MonsterFactory(); 
     public CommandParser parser;
     public Monster monster;
+    public int temp=0;//toygar
     Player player = null;
 //	Entity entity=null;
     public Game(Player player, String playerType) throws DeathException {
@@ -274,7 +275,56 @@ QueueProvider.offer("\nSssshhh !!!!!!\nWe are not alone "+player.getName()+"\n''
        try {
             while (continuePrompt) {
 ////////////////////////Kutu sorusu burada
-                   
+                if(player.borcAldiMi==1){
+			
+			player.promptCheck++;
+			temp=10-player.promptCheck;
+			if(temp!=0)
+				System.out.println("\n(You should pay your debt after : "+ temp +" steps.)");
+			else if(temp==0){
+				int miktar=0;
+				
+				if((player.borcTipi).equals("1")){
+					miktar=player.getGold()-50;
+					if(miktar<0){
+						if(!(player.getHealth()-20 <= 0))
+							player.setHealth(player.getHealth()-20);
+						else
+							player.setHealth(1);		
+					}
+					else{
+						player.setGold(miktar);		
+					}
+					
+				}
+				else if((player.borcTipi).equals("2")){
+					miktar=player.getGold()-50;
+					if(miktar<0){
+						if(!(player.getDamage()-10 <= 0))
+							player.setDamage(player.getDamage()-10);
+						else
+							player.setDamage(1);		
+					}
+					else{
+						player.setGold(miktar);		
+					}
+				}
+				else if((player.borcTipi).equals("3")){
+					miktar=player.getGold()-50;
+					if(miktar<0){
+						if(!(player.getArmour()-1 < 0))
+							player.setArmour(player.getArmour()-1);
+						else
+							player.setArmour(0);		
+					}
+					else{
+						player.setGold(miktar);		
+					}
+				}
+				player.borcAldiMi=0;
+				player.promptCheck=-1;
+			}		
+		}      
 		QueueProvider.offer("\nPrompt:");
                 String command = QueueProvider.take().toLowerCase();
                 continuePrompt = parser.parse(player, command);

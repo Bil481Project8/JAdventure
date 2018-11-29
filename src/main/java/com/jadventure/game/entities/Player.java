@@ -54,6 +54,9 @@ public class Player extends Entity {
     protected static LocationRepository locationRepo = GameBeans.getLocationRepository();
     private ILocation location;
     private int xp;
+    public int promptCheck=-1;//toygar
+    public int borcAldiMi=0;//toygar
+    public String borcTipi="";//toygar
     /** Player type */
     private String type;
     private static HashMap<String, Integer>characterLevels = new HashMap<String, Integer>();
