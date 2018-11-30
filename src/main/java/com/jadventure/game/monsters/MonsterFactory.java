@@ -8,9 +8,11 @@ import java.util.Random;
  * The MonsterFactory generates random monsters appropriately according
  * to the player's level and location
  */
+
+/*Created Orc => onurTe */
 public class MonsterFactory {
     Random random = new Random();
- 
+   
     public Monster generateMonster(Player player) {
         int randomInt = random.nextInt(5) + 1;
         if (randomInt <= player.getLocation().getDangerRating()) {
@@ -32,7 +34,7 @@ public class MonsterFactory {
             return null;
         }
     }
-
+    
     private Monster getForestMonster(int playerLevel) {
         int randomInt = random.nextInt(4);
         if (randomInt == 0)
@@ -40,7 +42,7 @@ public class MonsterFactory {
         else if (randomInt == 1)
         	return new Troll(playerLevel);
         else
-        	return new Orc(playerLevel);
+        	return new Orc(playerLevel); 
     }
     
     private Monster getSwampMonster(int playerLevel) {
@@ -61,7 +63,7 @@ public class MonsterFactory {
         else
             return new Skeleton(playerLevel);
     }
-
+    
     private Monster getCaveMonster(int playerLevel) {
     	int randomInt = random.nextInt(4);
         if (randomInt == 0)

@@ -156,7 +156,8 @@ public class ItemRepository {
     }
 
     /*
-        avoids new item wsupergun,wgun, fkit .
+        avoids new item wsupergun,wgun, fkit 
+        onurTe .
     */
     private Item getRandom(String start) {
         Random rand = new Random();

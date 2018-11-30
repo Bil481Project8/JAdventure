@@ -7,7 +7,7 @@ public class Orc extends Monster{
     /*
     Created new monster and monster dropped special item "machine gun"
     */
-
+   //onurTe
     public Orc(int playerLevel){
 		
         this.monsterType = "Orc";

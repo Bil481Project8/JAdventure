@@ -39,7 +39,8 @@ public class BattleMenu extends Menus {
             MenuItem selectedItem = displayMenu(this.menuItems);
             testSelected(selectedItem);
             
-            /* This addition has monster equipped code*/
+            /* This addition has monster equipped code
+            onurTe*/
             Random rnd = new Random();
             int rand = rnd.nextInt(10);
             if(opponent.getHealth()<player.getHealth()&&escapePlayerAttempts<1&&rand<2){
@@ -153,7 +154,8 @@ public class BattleMenu extends Menus {
         }
     }
 
-    /* This method calculates the probability of the escape of the monster */
+    /* This method calculates the probability of the escape of the monster 
+    onurTe*/
     
     private int escapeAtackerAttempt(Player player, NPC attacker) { 
         Random rnd = new Random();
