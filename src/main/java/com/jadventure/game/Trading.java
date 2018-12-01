@@ -82,7 +82,7 @@ public class Trading {
 					player.setGold(player.getGold()+50);
 					player.borcAldiMi=1;
 					player.borcTipi="1";
-					System.out.println("okey, you get 50 gold.AFTER 10 PROMPT YOU SHOULD PAY ME BACK.\n if not,your armour,intelligence and dexterity are going to decrease.");
+					System.out.println("okey, you get 50 gold.AFTER 10 PROGRESS YOU SHOULD PAY ME BACK.\n if not,your armour,intelligence and dexterity are going to decrease.");
 					System.out.println("current gold : "+player.getGold());
 				}
 				else if(borrowTypeSelection.equals("2")){
@@ -90,7 +90,7 @@ public class Trading {
 					player.setGold(player.getGold()+50);
 					player.borcAldiMi=1;
 					player.borcTipi="2";
-					System.out.println("okey, you get 50 gold.AFTER 10 PROMPT YOU SHOULD PAY ME BACK.\n if not,your armour,intelligence and dexterity are going to decrease.");
+					System.out.println("okey, you get 50 gold.AFTER 10 PROGRESS YOU SHOULD PAY ME BACK.\n if not,your armour,intelligence and dexterity are going to decrease.");
 					System.out.println("current gold : "+player.getGold());
 				}
 				else if(borrowTypeSelection.equals("3")){
@@ -98,7 +98,7 @@ public class Trading {
 					player.setGold(player.getGold()+50);
 					player.borcAldiMi=1;
 					player.borcTipi="3";
-					System.out.println("okey, you get 50 gold.AFTER 10 PROMPT YOU SHOULD PAY ME BACK.\n if not,your armour,intelligence and dexterity are going to decrease.");
+					System.out.println("okey, you get 50 gold.AFTER 10 PROGRESS YOU SHOULD PAY ME BACK.\n if not,your armour,intelligence and dexterity are going to decrease.");
 					System.out.println("current gold : "+player.getGold());
 				}
 			}
