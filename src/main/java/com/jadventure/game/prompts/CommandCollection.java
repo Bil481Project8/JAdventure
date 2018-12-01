@@ -189,7 +189,7 @@ public enum CommandCollection {
         player.dequipItem(arg.trim());
     }
 
-    @Command(command="view", aliases="v", description="View details for 'stats', 'equipped' or 'backpack'", debug=false)
+    @Command(command="view", aliases="v", description="View details for 'stats', 'equipped','history' or 'backpack'", debug=false)
     public void command_v(String arg) {
         arg = arg.trim();
         switch (arg) {
@@ -200,6 +200,10 @@ public enum CommandCollection {
             case "e":
             case "equipped":
                 player.printEquipment();
+                break;
+            case "h":
+            case "history":
+                player.printHistory();
                 break;
             case "b":
             case "backpack":

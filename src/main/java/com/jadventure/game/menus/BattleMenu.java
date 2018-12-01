@@ -62,6 +62,8 @@ public class BattleMenu extends Menus {
             if (reply.startsWith("y")) {
                 throw new DeathException("restart");
             } else if (reply.startsWith("n")) {
+                QueueProvider.offer("\nYour game history!");
+                player.printHistory();
                 throw new DeathException("close");
             }
         }  else if (opponent.getHealth() == 0) {
@@ -97,6 +99,7 @@ public class BattleMenu extends Menus {
             if (oldLevel < newLevel) {
                 QueueProvider.offer("You've are now level " + newLevel + "!");
             }
+            player.killedMonster.add(opponent);
             CharacterChange cc = new CharacterChange();
             cc.trigger(this.player, "kill", opponent.getName());
         }
@@ -264,7 +267,7 @@ public class BattleMenu extends Menus {
 
     private void viewStats() {
         QueueProvider.offer("\nWhat is your command? ex. View stats(vs), " +
-                "View Backpack(vb), View Equipment(ve) ");
+                "View Backpack(vb), View Equipment(ve), View History(vh) ");
         String input = QueueProvider.take();
         switch (input) {
             case "vs":
@@ -281,6 +284,10 @@ public class BattleMenu extends Menus {
                 break;
             case "back":
             case "exit":
+                break;
+            case "vh":
+            case "viewhistory":
+                player.printHistory();
                 break;
             default:
                 viewStats();
