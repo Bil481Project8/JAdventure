@@ -23,7 +23,7 @@ public class BattleMenu extends Menus {
     private int armour;
     private double damage;
     private int escapePlayerAttempts = 0;
-    private int escapeAtackerAttempts = 0; 
+    private int escapeAttackerAttempts = 0; 
     
     public BattleMenu(NPC opponent, Player player) throws DeathException {
         this.random = new Random();
@@ -34,20 +34,21 @@ public class BattleMenu extends Menus {
         buildMenu();
         while (opponent.getHealth() > 0 &&
                 player.getHealth() > 0 &&
-                (escapePlayerAttempts <= 0)&&escapeAtackerAttempts!=1) {
+                (escapePlayerAttempts <= 0)&&escapeAttackerAttempts!=2) {
+
             QueueProvider.offer("\nWhat is your choice?");
             MenuItem selectedItem = displayMenu(this.menuItems);
             testSelected(selectedItem);
             
-            /* This addition has monster equipped code
+            /* This addition has monster escaped code
             onurTe*/
-            Random rnd = new Random();
-            int rand = rnd.nextInt(10);
-            if(opponent.getHealth()<player.getHealth()&&escapePlayerAttempts<1&&rand<2){
-                escapeAtackerAttempts=escapeAtackerAttempt(player, opponent);
-                if(escapeAtackerAttempts==1){
-                QueueProvider.offer(opponent.getName()+" escape you");
-                this.player.getLocation().remove(opponent);
+            if(opponent.getHealth()<player.getDamage()){
+                int donus = escapeAtackerAttempt(player, opponent);
+                
+                if(donus==2){
+                    escapeAttackerAttempts=2;
+                    QueueProvider.offer(opponent.getName()+" escape you");
+                    this.player.getLocation().remove(opponent);
                 }
             }
         }
@@ -64,6 +65,7 @@ public class BattleMenu extends Menus {
                 throw new DeathException("close");
             }
         }  else if (opponent.getHealth() == 0) {
+            escapeAttackerAttempts=0;
             int xp = opponent.getXPGain();
             this.player.setXP(this.player.getXP() + xp);
             int oldLevel = this.player.getLevel();
@@ -158,23 +160,17 @@ public class BattleMenu extends Menus {
     onurTe*/
     
     private int escapeAtackerAttempt(Player player, NPC attacker) { 
+       
         Random rnd = new Random();
-        int rand = rnd.nextInt(10);
-        
-        double attackerEscapeLevel = attacker.getIntelligence() +
-        attacker.getStealth() + attacker.getDexterity();
-        
-        double playerEscapeLevel = player.getIntelligence() +
-        player.getStealth() + player.getDexterity()+
-        (attacker.getDamage() / attackerEscapeLevel);;
-
-        double escapeLevel = attackerEscapeLevel / playerEscapeLevel;
-        System.out.println(escapeLevel);
-
-        if(rand<2 && escapeLevel< 0.5){
-            return 1;
-        }else
-            return 0;
+        int rand = rnd.nextInt(5);
+            if(rand<2 && escapeAttackerAttempts==0){
+                return 2;
+            }else if(rand >2 && escapeAttackerAttempts==0){
+                escapeAttackerAttempts--;
+                return 0;
+            }
+            else 
+                return 1;
 
     }
 
