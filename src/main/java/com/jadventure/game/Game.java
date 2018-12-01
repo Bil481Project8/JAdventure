@@ -40,6 +40,8 @@ import java.util.Random;
  */
 public class Game {
 //    protected static ItemRepository itemRepo = GameBeans.getItemRepository();
+	public int poisonLuck=0;
+	int poisonLuckyCount=0;
     public ArrayList<Monster> monsterList = new ArrayList<Monster>();
     public MonsterFactory monsterFactory = new MonsterFactory(); 
     public CommandParser parser;
@@ -260,7 +262,6 @@ public class Game {
 
 			}                
 		}//lcount==0
-		int poisonLuck = rand.nextInt(20)+1;
     	try {
             while (continuePrompt) {			
 ////////////////////////Kutu sorusu burada
@@ -331,8 +332,20 @@ public class Game {
 		}      
 		QueueProvider.offer("\nPrompt:");
 		String command = QueueProvider.take().toLowerCase();
+		if(poisonLuck == 1 && command.equals("g")){
+			poisonLuckyCount++;
+		}
+		if(poisonLuck ==1){
+			QueueProvider.offer("\nYou are in Poisoned location");
+			player.setHealth((player.getHealth()*90/100));
+			QueueProvider.offer("\nPoison decreased your Total Health %10");
+			if(poisonLuckyCount==3)
+				poisonLuck= rand.nextInt(20)+1;
+		}	
 		continuePrompt = parser.parse(player, command);
-				
+		if(command.equals("g") && poisonLuck !=1)
+			poisonLuck = rand.nextInt(20)+1;
+
 	}
     }catch (DeathException e) {
         if (e.getLocalisedMessage().equals("replay")) {

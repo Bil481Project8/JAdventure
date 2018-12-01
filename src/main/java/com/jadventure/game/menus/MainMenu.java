@@ -35,7 +35,7 @@ public class MainMenu extends Menus implements Runnable {
         this.menuItems.add(new MenuItem("Load", "Loads an existing Game"));
         this.menuItems.add(new MenuItem("Delete", "Deletes an existing Game"));
         this.menuItems.add(new MenuItem("Exit", null, "quit"));
-        this.menuItems.add(new MenuItem("PoisonMap", "activate randomly Poison Damage"));
+        
 
         
         while(true) {
@@ -60,15 +60,12 @@ public class MainMenu extends Menus implements Runnable {
         switch (key){
             case "start":
                 new ChooseClassMenu();
-                break;
-            case "PoisonMap":
-            QueueProvider.offer("Posinoed Map activaded");
-                
                 break;    
             case "exit":
                 QueueProvider.offer("Goodbye!");
                 return false;
             case "load":
+            
                 listProfiles();
                 Player player = null;
                 boolean exit = false;
