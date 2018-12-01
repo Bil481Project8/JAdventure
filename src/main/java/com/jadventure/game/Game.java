@@ -332,19 +332,22 @@ public class Game {
 		}      
 		QueueProvider.offer("\nPrompt:");
 		String command = QueueProvider.take().toLowerCase();
-		if(poisonLuck == 1 && command.equals("g")){
+		if(poisonLuck == 1 && command.equals(command.substring(0,1).equals("g"))){
 			poisonLuckyCount++;
 		}
 		if(poisonLuck ==1){
 			QueueProvider.offer("\nYou are in Poisoned location");
 			player.setHealth((player.getHealth()*90/100));
 			QueueProvider.offer("\nPoison decreased your Total Health %10");
+			QueueProvider.offer("your health is decreased "+player.getHealth());
 			if(poisonLuckyCount==3)
 				poisonLuck= rand.nextInt(20)+1;
 		}	
 		continuePrompt = parser.parse(player, command);
-		if(command.equals("g") && poisonLuck !=1)
-			poisonLuck = rand.nextInt(20)+1;
+		if(command.equals(command.substring(0,1).equals("g")) && poisonLuck !=1){
+			poisonLuck = 1;
+			poisonLuckyCount = 0;
+		}
 
 	}
     }catch (DeathException e) {
