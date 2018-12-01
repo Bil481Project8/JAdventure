@@ -184,7 +184,7 @@ properties.put("value", 3);
 	Item luit=new Item("fram1","food","raw meat","some delicious raw meat",1,properties);
      QueueProvider.offer("raw meat\n"+player.getName()+" ,if you are gonna look at it enter this command [vb] if you are gonna use it then enter [ve]\n");
 	player.addItemToStorage(luit);
-}else if(lucy==3||lucy==4||lucy==5){
+}else if(lucy==3||lucy==4){
 Map<String, Integer> properties2 =new HashMap<String, Integer>();
 properties2.put("healthMax",0);
 properties2.put("health", 25);
@@ -196,7 +196,7 @@ properties2.put("value",20);
 
 
 }
-else if(lucy==6||lucy==7||lucy==8){
+else if(lucy==6||lucy==7){
 Map<String, Integer> properties3 =new HashMap<String, Integer>();
 properties3.put("damage",50);
 properties3.put("weight",3);
@@ -204,6 +204,17 @@ properties3.put("value",0);
 	Item luit3=new Item("katana","weapon","Katana","A long sword once used by a legendary Japanese samurai",3,properties3);
      QueueProvider.offer("Katana\n"+player.getName()+", if you are gonna look at it enter this command [vb] if you are gonna use it then enter [ve]\n");
 	player.addItemToStorage(luit3);
+
+
+}
+else if(lucy==5||lucy==8){
+Map<String, Integer> properties5 =new HashMap<String, Integer>();
+properties5.put("damage",5);
+properties5.put("weight",4);
+properties5.put("value",50);
+	Item luit5=new Item("wspe1","weapon","spear","a basic spear",1,properties5);
+     QueueProvider.offer("spear\n"+player.getName()+", if you are gonna look at it enter this command [vb] if you are gonna use it then enter [ve]\n");
+	player.addItemToStorage(luit5);
 
 
 }
