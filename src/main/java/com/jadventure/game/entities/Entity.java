@@ -19,6 +19,7 @@ public abstract class Entity {
     // @Resource
     protected ItemRepository itemRepo = GameBeans.getItemRepository();
     
+    public Map<String,String> equipToUnequip= new HashMap<String,String>();
     // All entities can attack, have health, have names
     private int healthMax;
     private int health;
@@ -195,6 +196,9 @@ public abstract class Entity {
             place = item.getPosition();
         }
         if (equipment.get(place) != null) {
+            String bufferName = equipment.get(place).getName();
+            String bufferType = equipment.get(place).getType();
+            equipToUnequip.put(bufferName, bufferType+" : ");
             unequipItem(equipment.get(place));
         }
         if (place == EquipmentLocation.BOTH_HANDS) {

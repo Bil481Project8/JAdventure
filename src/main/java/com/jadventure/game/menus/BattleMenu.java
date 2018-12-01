@@ -43,9 +43,9 @@ public class BattleMenu extends Menus {
             /* This addition has monster escaped code
             onurTe*/
             if(opponent.getHealth()<player.getDamage()){
-                int donus = escapeAtackerAttempt(player, opponent);
+                int result = escapeAtackerAttempt(player, opponent);
                 
-                if(donus==2){
+                if(result==2){
                     escapeAttackerAttempts=2;
                     QueueProvider.offer(opponent.getName()+" escape you");
                     this.player.getLocation().remove(opponent);

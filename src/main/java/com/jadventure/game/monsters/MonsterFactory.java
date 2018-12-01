@@ -15,7 +15,10 @@ public class MonsterFactory {
    
     public Monster generateMonster(Player player) {
         int randomInt = random.nextInt(3) + 1;
-        if (randomInt <= player.getLocation().getDangerRating()+2) {
+
+        if(player.getLocation().getDangerRating()==0){
+            return null;
+        }else if (randomInt <= player.getLocation().getDangerRating()+2) {
             switch (player.getLocationType()) {
                 case FOREST:
                     return getForestMonster(player.getLevel());

@@ -536,6 +536,9 @@ public class Player extends Entity {
         for(Map.Entry<String,String> out : mapUnequipItem.entrySet()){
             QueueProvider.offer(out.getValue() + " " + out.getKey()+" ");
         }
+        for(Map.Entry<String,String> out : equipToUnequip.entrySet()){
+            QueueProvider.offer(out.getValue()+ " "+ out.getKey()+" ");
+        }
         if(mapUnequipItem.size()==0) 
             QueueProvider.offer("---empty---");
     }
@@ -577,6 +580,7 @@ public class Player extends Entity {
         }else
             QueueProvider.offer("Total Killed Monster : "+ killedMonster.size());
     }
+    
 
 	public void printHistory() {
         printPickedItemHistory();
