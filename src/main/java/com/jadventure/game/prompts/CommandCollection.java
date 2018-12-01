@@ -140,7 +140,7 @@ public enum CommandCollection {
                     Random random = new Random();
                     if (player.getLocation().getMonsters().size() == 0) {
                         MonsterFactory monsterFactory = new MonsterFactory();
-                        int upperBound = random.nextInt(player.getLocation().getDangerRating() + 1);
+                        int upperBound = random.nextInt(player.getLocation().getDangerRating() + 6);
                         for (int i = 0; i < upperBound; i++) {
                             Monster monster = monsterFactory.generateMonster(player);
                             player.getLocation().addMonster(monster);
