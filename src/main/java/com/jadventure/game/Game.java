@@ -43,7 +43,8 @@ public class Game {
     public ArrayList<Monster> monsterList = new ArrayList<Monster>();
     public MonsterFactory monsterFactory = new MonsterFactory(); 
     public CommandParser parser;
-    public Monster monster;
+	public Monster monster;
+	public int poisonLuck;//Erhan
     public int temp=0;//toygar
     Player player = null;
 //	Entity entity=null;
@@ -93,7 +94,6 @@ public class Game {
         boolean continuePrompt = true;
  
 Random rand = new Random();
-
 int lcount=0;
 int sans=0;
 int sans2=0;
@@ -285,6 +285,9 @@ QueueProvider.offer("\nSssshhh !!!!!!\nWe are not alone "+player.getName()+"\n''
 
        try {
             while (continuePrompt) {
+				poisonLuck = rand.nextInt(20)+1;
+				if(poisonLuck == 1){
+					player.setHealth((player.getHealth()*90)/100);}//can yuzde 10 düşüyor
 ////////////////////////Kutu sorusu burada
                 if(player.borcAldiMi==1){			//sadece borc alindiginda devreye girecek.
 			

@@ -62,6 +62,7 @@ public class MainMenu extends Menus implements Runnable {
                 new ChooseClassMenu();
                 break;
             case "PoisonMap":
+            QueueProvider.offer("Posinoed Map activaded");
                 
                 break;    
             case "exit":
