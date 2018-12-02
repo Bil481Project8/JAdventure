@@ -62,18 +62,12 @@ public class Player extends Entity {
     private String type;
     private static HashMap<String, Integer>characterLevels = new HashMap<String, Integer>();
 
-     /* Print History Structure*/  
+     /* Create History lists*/  
      private ArrayList<String> pickItemList = new ArrayList<String>();
      private ArrayList<String> equipItemList = new ArrayList<String>();
      private ArrayList<String> unequipItemList = new ArrayList<String>();
      private ArrayList<String> dropItemList = new ArrayList<String>();
      public ArrayList<String> escapedMonsterList = new ArrayList<String>();
-
-     //private Map<String,String> mapPickItem= new HashMap<String,String>();
-     //private Map<String,String> mapEquipItem= new HashMap<String,String>();
-     //private Map<String,String> mapUnequipItem=new HashMap<String,String>();
-     //private Map<String,String> mapDropItem= new HashMap<String,String>();
-     
      public ArrayList<NPC> killedMonsterList =new ArrayList<NPC>();
     
      public Player() {
@@ -600,7 +594,7 @@ public class Player extends Entity {
             QueueProvider.offer("---empty---");
         }
     }
-
+    /* This method prints player game history */
 	public void printHistory() {
         printPickedItemHistory();
         QueueProvider.offer("\n");
