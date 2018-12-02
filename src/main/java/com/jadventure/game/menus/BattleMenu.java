@@ -47,6 +47,7 @@ public class BattleMenu extends Menus {
                 
                 if(result==2){
                     escapeAttackerAttempts=2;
+                    player.escapedMonsterList.add(opponent.getName());
                     QueueProvider.offer(opponent.getName()+" escape you");
                     this.player.getLocation().remove(opponent);
                 }
@@ -99,7 +100,7 @@ public class BattleMenu extends Menus {
             if (oldLevel < newLevel) {
                 QueueProvider.offer("You've are now level " + newLevel + "!");
             }
-            player.killedMonster.add(opponent);
+            player.killedMonsterList.add(opponent);
             CharacterChange cc = new CharacterChange();
             cc.trigger(this.player, "kill", opponent.getName());
         }

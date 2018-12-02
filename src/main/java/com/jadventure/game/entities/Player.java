@@ -63,12 +63,20 @@ public class Player extends Entity {
     private static HashMap<String, Integer>characterLevels = new HashMap<String, Integer>();
 
      /* Print History Structure*/  
-     private Map<String,String> mapPickItem= new HashMap<String,String>();
-     private Map<String,String> mapEquipItem= new HashMap<String,String>();
-     private Map<String,String> mapUnequipItem=new HashMap<String,String>();
-     private Map<String,String> mapDropItem= new HashMap<String,String>();
-     public LinkedList<NPC> killedMonster=new LinkedList<NPC>();
-    public Player() {
+     private ArrayList<String> pickItemList = new ArrayList<String>();
+     private ArrayList<String> equipItemList = new ArrayList<String>();
+     private ArrayList<String> unequipItemList = new ArrayList<String>();
+     private ArrayList<String> dropItemList = new ArrayList<String>();
+     public ArrayList<String> escapedMonsterList = new ArrayList<String>();
+
+     //private Map<String,String> mapPickItem= new HashMap<String,String>();
+     //private Map<String,String> mapEquipItem= new HashMap<String,String>();
+     //private Map<String,String> mapUnequipItem=new HashMap<String,String>();
+     //private Map<String,String> mapDropItem= new HashMap<String,String>();
+     
+     public ArrayList<NPC> killedMonsterList =new ArrayList<NPC>();
+    
+     public Player() {
     }
 
     protected static void setUpCharacterLevels() {
@@ -370,9 +378,10 @@ public class Player extends Entity {
             Item item = items.get(0);
             String bufName = item.getName();
             String bufType = item.getType();
+            String listItem = bufType +" : "+ bufName;
             addItemToStorage(item);
             location.removeItem(item);
-            mapPickItem.put(bufName, bufType+" : ");
+            pickItemList.add(listItem);
             QueueProvider.offer(item.getName()+ " picked up");
         }
     }
@@ -393,7 +402,8 @@ public class Player extends Entity {
             }
             String bufName = item.getName();
             String bufType = item.getType();
-            mapDropItem.put(bufName,bufType+ " : ");
+            String listItem = bufType +" : "+ bufName;
+            dropItemList.add(listItem);
             
             removeItemFromStorage(itemToDrop);
             location.addItem(itemToDrop);
@@ -412,7 +422,9 @@ public class Player extends Entity {
 
                 String bufType = item.getType(); 
                 String bufName = item.getName();
-                mapEquipItem.put(bufName, bufType+" : ");
+                String listItem = bufType +" : "+bufName;
+                equipItemList.add(listItem);
+
             } else {
                 QueueProvider.offer("You do not have the required level to use this item");
             }
@@ -426,7 +438,8 @@ public class Player extends Entity {
          if (!items.isEmpty()) {
             Item item = items.get(0);
             Map<String, String> change = unequipItem(item);
-            mapUnequipItem.put(item.getName(), item.getType()+" : ");
+            String listItem = item.getType()+" : "+ item.getName();
+            unequipItemList.add(listItem);
             QueueProvider.offer(item.getName()+" unequipped");
 	        printStatChange(change);
          }
@@ -533,61 +546,73 @@ public class Player extends Entity {
 
     private void printUnequippedItemHistory(){
         QueueProvider.offer("Unequipped Item History : ");
-        for(Map.Entry<String,String> out : mapUnequipItem.entrySet()){
-            QueueProvider.offer(out.getValue() + " " + out.getKey()+" ");
+        for(int i = 0;i<unequipItemList.size();i++){
+            QueueProvider.offer(unequipItemList.get(i));
         }
-        for(Map.Entry<String,String> out : equipToUnequip.entrySet()){
-            QueueProvider.offer(out.getValue()+ " "+ out.getKey()+" ");
-        }
-        if(mapUnequipItem.size()==0) 
+        if(unequipItemList.size()==0) 
             QueueProvider.offer("---empty---");
     }
 
     private void printEquippedItemHistory(){
         QueueProvider.offer("Equipped Item History : ");
-        for(Map.Entry<String,String> out : mapEquipItem.entrySet()){
-            QueueProvider.offer(out.getValue() + " " + out.getKey()+" ");
+        for(int i = 0;i<equipItemList.size();i++){
+            QueueProvider.offer(equipItemList.get(i));
         }
-        if(mapEquipItem.size()==0) 
+        if(equipItemList.size()==0) 
             QueueProvider.offer("---empty---");
     }
 
     private void printDroppedItemHistory(){
         QueueProvider.offer("Dropped Item History : ");
-        for(Map.Entry<String,String> out : mapDropItem.entrySet()){
-            QueueProvider.offer(out.getValue() + " " + out.getKey()+" ");
+        for(int i = 0;i<dropItemList.size();i++){
+            QueueProvider.offer(dropItemList.get(i));
         }
-        if(mapDropItem.size()==0)
+        if(dropItemList.size()==0)
             QueueProvider.offer("---empty---");
     }
 
     private void printPickedItemHistory(){
         QueueProvider.offer("Picked Item History : ");
-        for(Map.Entry<String,String> out : mapPickItem.entrySet()){
-            QueueProvider.offer(out.getValue() + " " + out.getKey()+" ");
+        for(int i = 0;i<pickItemList.size();i++){
+            QueueProvider.offer(pickItemList.get(i));
         }
-        if(mapPickItem.size()==0)
+        if(pickItemList.size()==0)
             QueueProvider.offer("---empty---");
     }
 
     private void printKilledMonsterHistory(){
         QueueProvider.offer("Killed Monster : ");
-        for(NPC np : killedMonster){
-            QueueProvider.offer("Name : " + np.getName()+" \n"+"Prize Gold : "+ np.getGold()+ " \n");
+        for(NPC np : killedMonsterList){
+            QueueProvider.offer("Name : " + np.getName()+" \n"+"Prize Gold : "+ np.getGold());
         }
-        if(killedMonster.size()==0) {
+        if(killedMonsterList.size()==0) {
             QueueProvider.offer("---empty----");
         }else
-            QueueProvider.offer("Total Killed Monster : "+ killedMonster.size());
+            QueueProvider.offer("Total Killed Monster : "+ killedMonsterList.size());
     }
     
+    private void printEscapedMonsterHistory(){
+        QueueProvider.offer("Escaped Monster : ");
+        for(String np : escapedMonsterList){
+            QueueProvider.offer(np);
+        }
+        if(escapedMonsterList.size()==0){
+            QueueProvider.offer("---empty---");
+        }
+    }
 
 	public void printHistory() {
         printPickedItemHistory();
+        QueueProvider.offer("\n");
         printDroppedItemHistory();
+        QueueProvider.offer("\n");
         printEquippedItemHistory();
+        QueueProvider.offer("\n");
         printUnequippedItemHistory();
+        QueueProvider.offer("\n");
         printKilledMonsterHistory();
+        QueueProvider.offer("\n");
+        printEscapedMonsterHistory();
         QueueProvider.offer("\n");
     }
 }
