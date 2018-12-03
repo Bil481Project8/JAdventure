@@ -416,9 +416,12 @@ public class Player extends Entity {
 
                 String bufType = item.getType(); 
                 String bufName = item.getName();
-                String listItem = bufType +" : "+bufName;
-                equipItemList.add(listItem);
-
+               
+                if(!(bufType.equalsIgnoreCase("potion")&&bufName.equalsIgnoreCase("first aid kit"))){
+                    String listItem = bufType +" : "+bufName;
+                    equipItemList.add(listItem);
+                }
+                
             } else {
                 QueueProvider.offer("You do not have the required level to use this item");
             }
@@ -540,11 +543,14 @@ public class Player extends Entity {
 
     private void printUnequippedItemHistory(){
         QueueProvider.offer("Unequipped Item History : ");
+        for(int i = 0;i<equipToUnequip.size();i++){
+            QueueProvider.offer(equipToUnequip.get(i));
+        }
         for(int i = 0;i<unequipItemList.size();i++){
             QueueProvider.offer(unequipItemList.get(i));
         }
-        if(unequipItemList.size()==0) 
-            QueueProvider.offer("---empty---");
+        if(unequipItemList.size()==0 && equipToUnequip.size()==0) 
+            QueueProvider.offer("--Empty--");
     }
 
     private void printEquippedItemHistory(){
@@ -552,8 +558,14 @@ public class Player extends Entity {
         for(int i = 0;i<equipItemList.size();i++){
             QueueProvider.offer(equipItemList.get(i));
         }
-        if(equipItemList.size()==0) 
-            QueueProvider.offer("---empty---");
+        for(int i=0;i<successedFkit.size();i++){
+            QueueProvider.offer(successedFkit.get(i));
+        }
+        for(int i = 0;i<failedFkit.size();i++){
+            QueueProvider.offer(failedFkit.get(i));
+        }
+        if(equipItemList.size()==0&&failedFkit.size()==0&&successedFkit.size()==0) 
+            QueueProvider.offer("--Empty--");
     }
 
     private void printDroppedItemHistory(){
@@ -562,7 +574,7 @@ public class Player extends Entity {
             QueueProvider.offer(dropItemList.get(i));
         }
         if(dropItemList.size()==0)
-            QueueProvider.offer("---empty---");
+            QueueProvider.offer("--Empty--");
     }
 
     private void printPickedItemHistory(){
@@ -571,7 +583,7 @@ public class Player extends Entity {
             QueueProvider.offer(pickItemList.get(i));
         }
         if(pickItemList.size()==0)
-            QueueProvider.offer("---empty---");
+            QueueProvider.offer("--Empty--");
     }
 
     private void printKilledMonsterHistory(){
@@ -580,7 +592,7 @@ public class Player extends Entity {
             QueueProvider.offer("Name : " + np.getName()+" \n"+"Prize Gold : "+ np.getGold());
         }
         if(killedMonsterList.size()==0) {
-            QueueProvider.offer("---empty----");
+            QueueProvider.offer("--Empty--");
         }else
             QueueProvider.offer("Total Killed Monster : "+ killedMonsterList.size());
     }
@@ -591,8 +603,10 @@ public class Player extends Entity {
             QueueProvider.offer(np);
         }
         if(escapedMonsterList.size()==0){
-            QueueProvider.offer("---empty---");
-        }
+            QueueProvider.offer("--Empty--");
+        }else
+            QueueProvider.offer("Total Escaped Monster : " + escapedMonsterList.size());
+
     }
     /* This method prints player game history */
 	public void printHistory() {

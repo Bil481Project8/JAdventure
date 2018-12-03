@@ -42,7 +42,9 @@ public class BattleMenu extends Menus {
             
             /* This addition has monster escaped code
             onurTe*/
-            if(opponent.getHealth()<player.getDamage()){
+            Random rndEscape = new Random();
+            int randEscape = rndEscape.nextInt(7);
+            if((opponent.getHealth()<player.getDamage())&&randEscape<5){
                 int result = escapeAtackerAttempt(player, opponent);
                 
                 if(result==2){

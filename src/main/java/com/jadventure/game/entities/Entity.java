@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.ArrayList;
 
 import com.jadventure.game.GameBeans;
 import com.jadventure.game.QueueProvider;
@@ -19,7 +20,9 @@ public abstract class Entity {
     // @Resource
     protected ItemRepository itemRepo = GameBeans.getItemRepository();
     
-    public Map<String,String> equipToUnequip= new HashMap<String,String>();
+    protected ArrayList<String> successedFkit = new ArrayList<String>();
+    protected ArrayList<String> failedFkit = new ArrayList<String>();
+    protected ArrayList<String> equipToUnequip= new ArrayList<String>();
     // All entities can attack, have health, have names
     private int healthMax;
     private int health;
@@ -39,6 +42,7 @@ public abstract class Entity {
     private String weapon = "hands";
     private Map<EquipmentLocation, Item> equipment;
     protected Storage storage;
+
 
     public Entity() {
     	this(100, 100, "default", 0, null, new HashMap<EquipmentLocation, Item>());
@@ -198,7 +202,9 @@ public abstract class Entity {
         if (equipment.get(place) != null) {
             String bufferName = equipment.get(place).getName();
             String bufferType = equipment.get(place).getType();
-            equipToUnequip.put(bufferName, bufferType+" : ");
+            String listItem = bufferType +" : "+bufferName;
+            equipToUnequip.add(listItem);
+
             unequipItem(equipment.get(place));
         }
         if (place == EquipmentLocation.BOTH_HANDS) {
@@ -254,6 +260,11 @@ public abstract class Entity {
                    Random rd = new Random();
                    int rnd = rd.nextInt(10);
                    if(rnd<6){
+                    String bufferType = item.getType();
+                    String bufferName = item.getName();
+                    String itemList = "Successed "+bufferType +" : "+bufferName;
+                    successedFkit.add(itemList);
+
                     int healthOld = this.getHealth();
                     this.health += item.getProperty("health");
                     this.health = (this.health > this.healthMax) ? this.healthMax
@@ -264,6 +275,11 @@ public abstract class Entity {
                     result.put("health", String.valueOf(health - healthOld));
                     break;       
                    }else{
+                    String bufferName = item.getName();
+                    String bufferType = item.getType();
+                    String itemList = "Failed "+bufferType+" : "+bufferName;
+                    failedFkit.add(itemList);
+
                     unequipItem(item); // One use only
                     removeItemFromStorage(item);
                     QueueProvider.offer("Failed equip first aid kit");
