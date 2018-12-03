@@ -19,10 +19,12 @@ import com.jadventure.game.repository.ItemRepository;
 public abstract class Entity {
     // @Resource
     protected ItemRepository itemRepo = GameBeans.getItemRepository();
-    
+   
+    //Lists created for player history
     protected ArrayList<String> successedFkit = new ArrayList<String>();
     protected ArrayList<String> failedFkit = new ArrayList<String>();
     protected ArrayList<String> equipToUnequip= new ArrayList<String>();
+   
     // All entities can attack, have health, have names
     private int healthMax;
     private int health;

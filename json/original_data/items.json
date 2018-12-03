@@ -53,7 +53,7 @@
       "position": "rightHand",
       "level": 1,
       "properties": {
-        "damage": "+35",
+        "damage": "+40",
 		"weight": "3",
         "value": "80"
       }
@@ -306,7 +306,7 @@
       "position": "rightHand",
       "level": 3,
       "properties": {
-        "damage": "+50",
+        "damage": "+35",
 		"weight": "3",
         "value": "0"
       }

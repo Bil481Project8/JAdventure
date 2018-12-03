@@ -62,14 +62,17 @@ public class Player extends Entity {
     private String type;
     private static HashMap<String, Integer>characterLevels = new HashMap<String, Integer>();
 
-     /* Create History lists*/  
+     /* Lists created for player history*/  
      private ArrayList<String> pickItemList = new ArrayList<String>();
      private ArrayList<String> equipItemList = new ArrayList<String>();
      private ArrayList<String> unequipItemList = new ArrayList<String>();
      private ArrayList<String> dropItemList = new ArrayList<String>();
+     
+     /*Lists created for player history*/
      public ArrayList<String> escapedMonsterList = new ArrayList<String>();
      public ArrayList<NPC> killedMonsterList =new ArrayList<NPC>();
     
+
      public Player() {
     }
 
@@ -416,7 +419,7 @@ public class Player extends Entity {
 
                 String bufType = item.getType(); 
                 String bufName = item.getName();
-               
+                /* fkit ->  we are adding it in separate class because it is either successful or unsuccessful possibility*/
                 if(!(bufType.equalsIgnoreCase("potion")&&bufName.equalsIgnoreCase("first aid kit"))){
                     String listItem = bufType +" : "+bufName;
                     equipItemList.add(listItem);
@@ -540,7 +543,7 @@ public class Player extends Entity {
         List<Item> searchStorage = searchItem(item.getName(), getStorage());
         return !(searchEquipment.size() == 0 && searchStorage.size() == 0);
     }
-
+    /* two lists are printed because the item is unequip when the other is equip */
     private void printUnequippedItemHistory(){
         QueueProvider.offer("Unequipped Item History : ");
         for(int i = 0;i<equipToUnequip.size();i++){
@@ -552,7 +555,7 @@ public class Player extends Entity {
         if(unequipItemList.size()==0 && equipToUnequip.size()==0) 
             QueueProvider.offer("--Empty--");
     }
-
+    /* fkit printed separately because it has two possibilities  */
     private void printEquippedItemHistory(){
         QueueProvider.offer("Equipped Item History : ");
         for(int i = 0;i<equipItemList.size();i++){

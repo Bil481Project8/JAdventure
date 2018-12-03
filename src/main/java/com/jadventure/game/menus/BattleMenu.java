@@ -46,7 +46,8 @@ public class BattleMenu extends Menus {
             int randEscape = rndEscape.nextInt(7);
             if((opponent.getHealth()<player.getDamage())&&randEscape<5){
                 int result = escapeAtackerAttempt(player, opponent);
-                
+
+                /* if result "2" , monster escaped and remove the location. */
                 if(result==2){
                     escapeAttackerAttempts=2;
                     player.escapedMonsterList.add(opponent.getName());
@@ -66,7 +67,7 @@ public class BattleMenu extends Menus {
                 throw new DeathException("restart");
             } else if (reply.startsWith("n")) {
                 QueueProvider.offer("\nYour game history!");
-                player.printHistory();
+                player.printHistory();   // if input "n" prints game history. 
                 throw new DeathException("close");
             }
         }  else if (opponent.getHealth() == 0) {
