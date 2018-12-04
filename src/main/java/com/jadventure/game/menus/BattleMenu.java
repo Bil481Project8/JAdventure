@@ -44,7 +44,7 @@ public class BattleMenu extends Menus {
             onurTe*/
             Random rndEscape = new Random();
             int randEscape = rndEscape.nextInt(7);
-            if((opponent.getHealth()<player.getDamage())&&randEscape<5){
+            if((opponent.getHealth()<player.getDamage())){
                 int result = escapeAtackerAttempt(player, opponent);
 
                 /* if result "2" , monster escaped and remove the location. */

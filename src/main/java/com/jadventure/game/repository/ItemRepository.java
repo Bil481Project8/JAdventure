@@ -163,9 +163,9 @@ public class ItemRepository {
         Random rand = new Random();
         Item item = null;
         do {
-            int itemIndex = rand.nextInt(itemMap.size() - 3);
+            int itemIndex = rand.nextInt(itemMap.size() - 4);
             List<Item> items = new ArrayList<>(itemMap.values());
-            item = items.get(itemIndex + 3); // avoids empty and hands items
+            item = items.get(itemIndex + 4); // avoids empty and hands items
         } while (!item.getId().startsWith(start));
         return item;
     }
