@@ -263,10 +263,13 @@ public class Game {
 			}                
 		}//lcount==0
     	try {
+		String command="";
             while (continuePrompt) {			
 ////////////////////////Kutu sorusu burada
                 if(player.borcAldiMi==1){			//sadece borc alindiginda devreye girecek.
+			if(command.equals("g s") || command.equals("g e") || command.equals("g w") || command.equals("g n"))
 					player.promptCheck++;	//bizim icin zaman dilimi her bir prompt girişidir.
+
 					temp=10-player.promptCheck;	//10 prompt olarak sectim zamanı,10 prompt sonra tahsil edilecek.
 					if(temp!=0)
 						System.out.println("\n(You should pay your debt after : "+ temp +" steps.)");
@@ -331,7 +334,7 @@ public class Game {
 			}		
 		}      
 		QueueProvider.offer("\nPrompt:");
-		String command = QueueProvider.take().toLowerCase();
+		command = QueueProvider.take().toLowerCase();
 		if(poisonLuck == 1 && command.equals(command.substring(0,1).equals("g"))){
 			poisonLuckyCount++;
 		}
