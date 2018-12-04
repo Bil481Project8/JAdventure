@@ -330,7 +330,7 @@ public class Game {
 					}
 				}
 				player.borcAldiMi=0;
-				player.promptCheck=-1;
+				player.promptCheck=0;
 			}		
 		}      
 		QueueProvider.offer("\nPrompt:");
