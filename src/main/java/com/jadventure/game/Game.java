@@ -348,7 +348,7 @@ public class Game {
 		}	
 		continuePrompt = parser.parse(player, command);
 		if(command.equals(command.substring(0,1).equals("g")) && poisonLuck !=1){
-			poisonLuck = 1;
+			poisonLuck= rand.nextInt(20)+1;
 			poisonLuckyCount = 0;
 		}
 
