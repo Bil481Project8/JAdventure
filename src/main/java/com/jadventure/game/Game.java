@@ -340,6 +340,10 @@ public class Game {
 		}
 		if(poisonLuck ==1){
 			QueueProvider.offer("\nYou are in Poisoned location");
+			if(player.getHealth()<10){
+				player.setHealth(1);
+				QueueProvider.offer("your health is decreased "+player.getHealth());
+			}
 			player.setHealth((player.getHealth()*90/100));
 			QueueProvider.offer("\nPoison decreased your Total Health %10");
 			QueueProvider.offer("your health is decreased "+player.getHealth());
