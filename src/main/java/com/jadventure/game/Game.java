@@ -344,9 +344,11 @@ public class Game {
 				player.setHealth(1);
 				QueueProvider.offer("your health is decreased "+player.getHealth());
 			}
-			player.setHealth((player.getHealth()*90/100));
-			QueueProvider.offer("\nPoison decreased your Total Health %10");
-			QueueProvider.offer("your health is decreased "+player.getHealth());
+			if(player.getHealth()>10){
+				player.setHealth((player.getHealth()*90/100));
+				QueueProvider.offer("\nPoison decreased your Total Health %10");
+				QueueProvider.offer("your health is decreased "+player.getHealth());
+			}
 			if(poisonLuckyCount==3)
 				poisonLuck= rand.nextInt(20)+1;
 		}	
